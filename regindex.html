@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Course Registration</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="regstyle.css">
+</head>
+<body>
+<main class="wrap">
+  <h1>Course registration</h1>
+  <p class="lede">Fill in your details to reserve a seat. Fields marked <span class="req">*</span> are required.</p>
+
+  <form id="reg" class="card" novalidate autocomplete="on">
+    <div class="grid">
+      <div class="field">
+        <label for="name">Full name <span class="req">*</span></label>
+        <input type="text" id="name" name="name" required minlength="3" maxlength="50"
+               pattern="[A-Za-z][A-Za-z .'\-]{2,49}" placeholder="" autocomplete="name" aria-describedby="name-e">
+        <p class="msg" id="name-e" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required
+               pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" placeholder="you@example.com" autocomplete="email" aria-describedby="email-e">
+        <p class="msg" id="email-e" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="mobile">Mobile number <span class="req">*</span></label>
+        <input type="tel" id="mobile" name="mobile" required inputmode="numeric" maxlength="10"
+               pattern="[6-9][0-9]{9}" placeholder="10-digit number" autocomplete="tel-national" aria-describedby="mobile-e">
+        <p class="msg" id="mobile-e" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="course">Course <span class="req">*</span></label>
+        <select id="course" name="course" required aria-describedby="course-e">
+          <option value="">Select a course</option>
+          <option>Data Structures &amp; Algorithms</option>
+          <option>Database Management Systems</option>
+          <option>Operating Systems</option>
+          <option>Computer Networks</option>
+          <option>Machine Learning Fundamentals</option>
+          <option>Web Technologies</option>
+        </select>
+        <p class="msg" id="course-e" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="password">Password <span class="req">*</span></label>
+        <div class="pw">
+          <input type="password" id="password" name="password" required minlength="8" maxlength="64"
+                 pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,64}" placeholder="Create a password" autocomplete="new-password" aria-describedby="password-e rules">
+          <button type="button" data-toggle="password" aria-label="Show password">Show</button>
+        </div>
+        <div class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <ul class="rules" id="rules">
+          <li data-r="len">8+ characters</li><li data-r="low">Lowercase letter</li>
+          <li data-r="up">Uppercase letter</li><li data-r="num">A number</li>
+          <li data-r="sym">A symbol</li>
+        </ul>
+        <p class="msg" id="password-e" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="confirm">Confirm password <span class="req">*</span></label>
+        <div class="pw">
+          <input type="password" id="confirm" name="confirm" required placeholder="Re-enter password" autocomplete="new-password" aria-describedby="confirm-e">
+          <button type="button" data-toggle="confirm" aria-label="Show confirm password">Show</button>
+        </div>
+        <p class="msg" id="confirm-e" aria-live="polite"></p>
+      </div>
+
+      <fieldset class="field full" id="modeField" aria-describedby="mode-e">
+        <legend>Attendance mode <span class="req">*</span></legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="mode" value="On campus" required> On campus</label>
+          <label class="choice"><input type="radio" name="mode" value="Online"> Online</label>
+          <label class="choice"><input type="radio" name="mode" value="Hybrid"> Hybrid</label>
+        </div>
+        <p class="msg" id="mode-e" aria-live="polite"></p>
+      </fieldset>
+
+      <div class="field full">
+        <label class="terms" for="terms">
+          <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-e">
+          <span>I confirm the details above are correct and agree to the course policies. <span class="req">*</span></span>
+        </label>
+        <p class="msg" id="terms-e" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Register</button>
+      <button class="btn ghost" type="reset" id="resetBtn">Clear form</button>
+      <p id="status" role="alert"></p>
+    </div>
+  </form>
+
+  <section class="card done" id="done" hidden aria-live="polite" tabindex="-1">
+    <h2>You’re registered</h2>
+    <p class="lede" style="margin-bottom:0">Keep your registration ID for reference.</p>
+    <dl id="summary"></dl>
+    <button class="btn ghost" type="button" id="again">Register another student</button>
+  </section>
+</main>
+
+<script src="regscript.js"></script>
+</body>
+</html>

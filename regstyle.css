@@ -1,0 +1,52 @@
+:root{
+  --bg:#f1f1f1; --card:#ffffff; --ink:#111111; --muted:#5c5c5c; --line:#cfcfcf;
+  --accent:#111111; --accent-ink:#ffffff; --err:#b3261e; --ok:#1b7a43; --field:#f8f8f8;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0a0a0a;--card:#161616;--ink:#f2f2f2;--muted:#a0a0a0;--line:#333333;--accent:#ffffff;--accent-ink:#000000;--err:#ff8a80;--ok:#6fdc9a;--field:#101010}
+}
+:root[data-theme="dark"]{--bg:#0a0a0a;--card:#161616;--ink:#f2f2f2;--muted:#a0a0a0;--line:#333333;--accent:#ffffff;--accent-ink:#000000;--err:#ff8a80;--ok:#6fdc9a;--field:#101010}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px 16px 48px}
+.wrap{max-width:720px;margin:0 auto}
+h1{font:700 clamp(1.9rem,5vw,2.6rem)/1.1 "Bricolage Grotesque",Georgia,serif;margin:0 0 6px;letter-spacing:-.02em}
+.lede{margin:0 0 22px;color:var(--muted);max-width:60ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,4vw,32px)}
+.grid{display:grid;gap:18px 20px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+label,legend{font-weight:600;font-size:.92rem;display:block;margin-bottom:6px;padding:0}
+.req{color:var(--err)}
+input[type=text],input[type=email],input[type=tel],input[type=password],select{
+  width:100%;font:inherit;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:8px;padding:11px 12px;min-height:46px}
+input::placeholder{color:var(--muted);opacity:.8}
+input:focus-visible,select:focus-visible,button:focus-visible,.choice input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.field.invalid input,.field.invalid select{border-color:var(--err)}
+.field.valid input,.field.valid select{border-color:var(--ok)}
+.msg{min-height:1.2em;margin:5px 0 0;font-size:.84rem;color:var(--err)}
+.pw{position:relative}
+.pw input{padding-right:64px}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--accent);font:600 .85rem Figtree,sans-serif;padding:8px;cursor:pointer;border-radius:6px}
+.meter{display:flex;gap:4px;margin-top:8px}
+.meter i{flex:1;height:5px;border-radius:3px;background:var(--line);transition:background .2s}
+.rules{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;font-size:.82rem;color:var(--muted)}
+.rules li::before{content:"○ "}
+.rules li.ok{color:var(--ok)}
+.rules li.ok::before{content:"✓ "}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--field);border-radius:8px;padding:10px 14px;cursor:pointer;font-weight:500;margin:0}
+.choice input{accent-color:var(--accent);width:18px;height:18px;margin:0}
+.terms{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.terms input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;align-items:center}
+.btn{font:600 1rem Figtree,sans-serif;border-radius:8px;padding:12px 22px;min-height:46px;cursor:pointer;border:1.5px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--accent)}
+#status{font-size:.9rem;color:var(--err);margin:0}
+.done[hidden]{display:none}
+.done h2{font:700 1.6rem "Bricolage Grotesque",Georgia,serif;margin:0 0 6px}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;margin:18px 0}
+dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
